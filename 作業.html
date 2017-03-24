@@ -1,0 +1,151 @@
+<html>
+<style>
+/* ###實驗下一列### */
+h1 { color:red; }
+.right
+{
+position:absolute;
+right:4px;
+}
+.left
+{
+position:absolute;
+left:2px;
+
+}
+
+table
+{
+width:80%;
+}
+
+table,th,td{
+border-collapse:collapse;
+ border: 5px solid red;
+}
+
+</style>
+<head>
+    <h1>麥當勞履歷表</h1>
+</head>
+<body>
+<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+    <form name="form1" method="post">
+        姓名
+        <INPUT TYPE="text" NAME="name" SIZE=10 MAXLENGTH=10>
+        <BR> 性別
+        <input type="radio" name="sex" value="male">男
+        <input type="radio" name="sex" value="girl">女
+        <BR> 生日 <label for="bookdate"></label>
+        <input type="date" name="birth" placeholder="2014-09-18">
+        <br> 興趣 
+
+        <!-- 修改value , 原本是id  -->
+        <div class="abgne-menu-20140101-2">
+            <input type="checkbox" value="吃東西" name="intrest"  checked>
+            <label for="吃東興">吃東西</label>
+            <input type="checkbox" value="睡覺" name="intrest">
+            <label for="睡覺">睡覺</label> <br>
+            <input type="checkbox" id="耍費" name="intrest">
+            <label for="耍廢">耍廢</label>
+            <input type="checkbox" id="隨便" name="intrest">
+            <label for="隨便">都好</label>
+        </div>
+        備註
+        <textarea width="560" height="9999" value="oters" name="others"></textarea>
+        <BR>
+        <!-- 原本少了（）, 呼叫function 要用()-->
+        <INPUT TYPE="button" VALUE="確認輸入" onclick="sentData()">
+  </div>
+
+    </form>
+    <p id="output"></p>
+    <div id="d"></div>
+
+</body>
+<script>
+    function sentData() {
+        var output = document.getElementById("output");
+        var name = document.form1.name.value;
+        var birth = document.form1.birth.value;
+        var sex = document.form1.sex.value;
+
+        // 盡量先不要用這種方式
+
+        // var intrest = Array.prototype.slice.call(document.querySelectorAll(".intrest:checked")).map(function(el) {
+        //     return el.value;
+        // }).join(', ')
+
+        // 取得 intrest 值
+        var data="";
+        for (var i=0; i<document.form1.intrest.length; i++)
+        {
+           if (document.form1.intrest[i].checked)
+           {
+              var language = document.form1.intrest[i].value;
+              data += language + ",";
+           }
+        }
+        console.log(data);
+        // console.log(intrest);
+        var others = document.form1.others.value;
+        var bigNode = document.getElementById("d");
+        var tableNode = document.createElement("table");
+        var tr1 = document.createElement("tr");
+        var tr2 = document.createElement("tr");
+        var th1 = document.createElement("th");
+        var th2 = document.createElement("th");
+        var th3 = document.createElement("th");
+        var th4 = document.createElement("th");
+        var th5 = document.createElement("th");
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td");
+        var td5 = document.createElement("td");
+        //var head1 = "姓名";
+        var tableHead1 = document.createTextNode("姓名");
+        //var head2 = "生日";
+        var tableHead2 = document.createTextNode("生日");
+        //var head3 = "性別";
+        var tableHead3 = document.createTextNode("性別");
+        //var head4 = "興趣";
+        var tableHead4 = document.createTextNode("興趣");
+        //var head5 = "備註";
+        var tableHead5 = document.createTextNode("備註");
+        var tableTex1 = document.createTextNode(name);
+        var tableTex2 = document.createTextNode(birth);
+        var tableTex3 = document.createTextNode(sex);
+        var tableTex4 = document.createTextNode(data);
+        var tableTex5 = document.createTextNode(others);
+        bigNode.appendChild(tableNode);
+        tableNode.appendChild(tr1);
+        tr1.appendChild(th1);
+        tr1.appendChild(th2);
+        tr1.appendChild(th3);
+        tr1.appendChild(th4);
+        tr1.appendChild(th5);
+        th1.appendChild(tableHead1);
+        th2.appendChild(tableHead2);
+        th3.appendChild(tableHead3);
+        th4.appendChild(tableHead4);
+        th5.appendChild(tableHead5);
+
+
+        tableNode.appendChild(tr2);
+        tr2.appendChild(td1);
+        tr2.appendChild(td2);
+        tr2.appendChild(td3);
+        tr2.appendChild(td4);
+        tr2.appendChild(td5);
+        td1.appendChild(tableTex1);
+        td2.appendChild(tableTex2);
+        td3.appendChild(tableTex3);
+        td4.appendChild(tableTex4);
+        td5.appendChild(tableTex5);
+    }
+
+</script>
+
+
+</html>
